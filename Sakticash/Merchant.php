@@ -44,9 +44,9 @@ class Sakticash_Merchant
 
     public function createQRCode($data_hash)
     {
+        $dataSigned = Sakticash_Merchant::createSignedData($data_hash);
         $url = Sakticash_Config::getBaseUrl() . "/create/qrcode";
-        $qrcode = Sakticash_ApiRequestor::post($url, $data_hash, Sakticash_Config::$auth);
-        return $qrcode;
+        return Sakticash_ApiRequestor::post($url, $dataSigned, Sakticash_Config::$auth);
     }
 
     public function checkStatus($transaction_id)
@@ -54,5 +54,20 @@ class Sakticash_Merchant
         $url = Sakticash_Config::getBaseUrl() . "/check/status/" . $transaction_id;
         $status = Sakticash_ApiRequestor::get($url, null, Sakticash_Config::$auth);
         return $status;
+    }
+
+    public function getTransactions($date, $to = null, $limit = 0)
+    {
+        $data_hash = array();
+        $data_hash['date'] = $date;
+        $data_hash['limit'] = $limit;
+
+        if ($to <> null) {
+            $data_hash['to'] = $to;
+        }
+
+        $dataSigned = Sakticash_Merchant::createSignedData($data_hash);
+        $url = Sakticash_Config::getBaseUrl() . "/get/transaction";
+        return Sakticash_ApiRequestor::post($url, $dataSigned, Sakticash_Config::$auth);
     }
 }
