@@ -49,6 +49,13 @@ class Sakticash_Merchant
         return Sakticash_ApiRequestor::post($url, $dataSigned, Sakticash_Config::$auth);
     }
 
+    public function createWebTransaction($data_hash)
+    {
+        $dataSigned = Sakticash_Merchant::createSignedData($data_hash);
+        $url = Sakticash_Config::getBaseUrl() . "/create/wbt";
+        return Sakticash_ApiRequestor::post($url, $dataSigned, Sakticash_Config::$auth);
+    }
+
     public function checkStatus($transaction_id)
     {
         $url = Sakticash_Config::getBaseUrl() . "/check/status/" . $transaction_id;
