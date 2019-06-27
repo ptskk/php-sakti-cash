@@ -1,9 +1,11 @@
 <?php
 
+namespace SaktiCash;
+
 /**
  * Sakticash Configuration
  */
-class Sakticash_Config
+class Config
 {
 
     /**
@@ -48,7 +50,7 @@ class Sakticash_Config
      */
     public static function getBaseUrl()
     {
-        return Sakticash_Config::$isProduction ?
-            Sakticash_Config::PRODUCTION_BASE_URL : Sakticash_Config::SANDBOX_BASE_URL;
+        return self::$isProduction ?
+            self::PRODUCTION_BASE_URL : self::SANDBOX_BASE_URL;
     }
 }

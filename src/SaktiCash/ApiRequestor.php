@@ -1,6 +1,10 @@
 <?php
 
-class Sakticash_ApiRequestor
+namespace SaktiCash;
+
+use Exception;
+
+class ApiRequestor
 {
     /**
      * Send GET request
@@ -52,17 +56,17 @@ class Sakticash_ApiRequestor
             );
         }
 
-        // merging with Sakticash_Config::$curlOptions
-        if (count(Sakticash_Config::$curlOptions)) {
+        // merging with Config::$curlOptions
+        if (count(Config::$curlOptions)) {
             // We need to combine headers manually, because it's array and it will no be merged
-            if (Sakticash_Config::$curlOptions[CURLOPT_HTTPHEADER]) {
-                $mergedHeders = array_merge($curl_options[CURLOPT_HTTPHEADER], Sakticash_Config::$curlOptions[CURLOPT_HTTPHEADER]);
+            if (Config::$curlOptions[CURLOPT_HTTPHEADER]) {
+                $mergedHeders = array_merge($curl_options[CURLOPT_HTTPHEADER], Config::$curlOptions[CURLOPT_HTTPHEADER]);
                 $headerOptions = array(CURLOPT_HTTPHEADER => $mergedHeders);
             } else {
                 $mergedHeders = array();
             }
 
-            $curl_options = array_replace_recursive($curl_options, Sakticash_Config::$curlOptions, $headerOptions);
+            $curl_options = array_replace_recursive($curl_options, Config::$curlOptions, $headerOptions);
         }
 
         if ($post) {

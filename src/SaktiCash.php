@@ -1,6 +1,10 @@
 <?php
 
+namespace SaktiCash;
+
 // Check PHP version.
+use Exception;
+
 if (version_compare(PHP_VERSION, '5.2.1', '<')) {
     throw new Exception('PHP version >= 5.2.1 required');
 }
@@ -15,7 +19,7 @@ if (!function_exists('json_decode')) {
 }
 
 // Configurations
-require_once('Sakticash/Config.php');
-require_once('Sakticash/ApiRequestor.php');
-require_once('Sakticash/Merchant.php');
-require_once('Sakticash/Callback.php');
+require_once('SaktiCash/Config.php');
+require_once('SaktiCash/ApiRequestor.php');
+require_once('SaktiCash/Merchant.php');
+require_once('SaktiCash/Callback.php');

@@ -1,0 +1,22 @@
+{
+    "name": "winardiaris/sakti-cash-library",
+    "description": "PHP wrapper/library for Sakti.Cash Payment Gateway https://sc.mycoop.id",
+    "type": "library",
+    "require": {
+        "php": ">=5.2.1"
+    },
+    "require-dev": {},
+    "license": "CC BY-SA",
+    "authors": [
+        {
+            "name": "Aris Winardi",
+            "email": "ariswinardy@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-0": {
+            "SaktiCash": "src/"
+        }
+    }
+}

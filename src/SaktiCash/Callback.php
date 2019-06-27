@@ -1,6 +1,7 @@
 <?php
+namespace SaktiCash;
 
-class Sakticash_Callback
+class Callback
 {
 
     private $response;
