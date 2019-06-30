@@ -31,7 +31,7 @@ class Merchant
         $algorithm = "sha256";
         $key = hash($algorithm, md5(Config::$usernameKey));
         $iv = substr(hash($algorithm, md5(Config::$passwordKey)), 0, 16);
-        return base64_encode(openssl_encrypt(base64_encode($json), $method, $key, 0, $iv));
+        return base64_encode(base64_encode(openssl_encrypt($json, $method, $key, 0, $iv)));
     }
 
     public static function createSignedData($data_hash)
