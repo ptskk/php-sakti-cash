@@ -1,5 +1,5 @@
 {
-    "name": "winardiaris/sakti-cash-library",
+    "name": "ptskk/php-sakti-cash",
     "description": "PHP wrapper/library for Sakti.Cash Payment Gateway https://sc.mycoop.id",
     "type": "library",
     "require": {
