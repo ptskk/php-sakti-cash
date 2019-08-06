@@ -89,16 +89,15 @@ class ApiRequestor
             throw new Exception('CURL Error: ' . curl_error($ch), curl_errno($ch));
         } else {
             try {
+                $header = json_decode(json_encode(curl_getinfo($ch)));
                 $result_array = json_decode($result);
             } catch (Exception $e) {
                 throw new Exception("API Request Error unable to json_decode API response: " . $result . ' | Request url: ' . $url);
             }
 
-            if (!in_array($result_array->status->response, array(200, 201, 202, 403))) {
-                $message = 'Sakticash Error (' . $result_array->status->response . '): '
-                    . $result_array->status->message . ': ' . json_encode($result_array->data);
-
-                throw new Exception($message, $result_array->status->response);
+            if (!in_array($header->http_code, array(200, 201, 503))) {
+                $message = "API Request Error  response: " . $header->http_code . ' | Request url: ' . $url . ' | CURL Error:' . json_encode($header) . ' Response: ' . $result;
+                throw new Exception($message);
             } else {
                 return $result_array;
             }
