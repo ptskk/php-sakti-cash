@@ -41,7 +41,7 @@ class Config
      */
     public static $curlOptions = array();
 
-    const SANDBOX_BASE_URL = 'https://dev-sc.mycoop.id:9192/api';
+    const SANDBOX_BASE_URL = 'https://dev-sc.mycoop.id/api';
     const PRODUCTION_BASE_URL = 'https://sc.mycoop.id/api';
 
 
