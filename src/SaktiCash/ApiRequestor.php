@@ -95,7 +95,7 @@ class ApiRequestor
                 throw new Exception("API Request Error unable to json_decode API response: " . $result . ' | Request url: ' . $url);
             }
 
-            if (!in_array($header->http_code, array(200, 201, 503))) {
+            if (!in_array($header->http_code, array(200, 201, 400, 401, 403, 503))) {
                 $message = "API Request Error  response: " . $header->http_code . ' | Request url: ' . $url . ' | CURL Error:' . json_encode($header) . ' Response: ' . $result;
                 throw new Exception($message);
             } else {
