@@ -81,4 +81,26 @@ class Merchant
         $url = Config::getBaseUrl() . "/get/transaction";
         return ApiRequestor::post($url, $dataSigned, Config::$auth);
     }
+
+    public static function requestPermission($hp)
+    {
+        $data_hash = array();
+        $data_hash['hp'] = $hp;
+
+        $dataSigned = self::createSignedData($data_hash);
+        $url = Config::getBaseUrl() . "/request/permission";
+        return ApiRequestor::post($url, $dataSigned, Config::$auth);
+    }
+
+    public static function getPermission()
+    {
+        $url = Config::getBaseUrl() . "/get/permission";
+        return ApiRequestor::get($url, null, Config::$auth);
+    }
+
+    public static function getCustomerInfo($hp)
+    {
+        $url = Config::getBaseUrl() . "/get/customer/" . $hp;
+        return ApiRequestor::get($url, null, Config::$auth);
+    }
 }
