@@ -12,8 +12,17 @@ Config::$auth = base64_encode(Config::$usernameKey . ":" . Config::$passwordKey)
 $isConnected = Merchant::isConnected();
 
 if ($isConnected) {
-    $hp = '12345678';
-    var_dump(Merchant::requestPermission($hp));
+    $trasaction_id = rand(11111111, 99999999);
+    $data = [
+        'amount' => rand(10000, 100000), // fill in the price of the item purchased
+        'hp' => '08111111111',
+        'transaction_id' => $trasaction_id, // must unique on merchant and API server
+        'transaction_datetime' => date('Y-m-d H:i:s'),
+        'description' => 'beli a b c d e f g'
+    ];
+
+    var_dump(Merchant::createSWebTransaction($data));
+
 } else {
     var_dump($isConnected);
 }
