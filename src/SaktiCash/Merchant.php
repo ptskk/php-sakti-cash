@@ -60,6 +60,20 @@ class Merchant
         return ApiRequestor::post($url, $dataSigned, Config::$auth);
     }
 
+    public static function createSWebTransaction($data_hash)
+    {
+        $dataSigned = self::createSignedData($data_hash);
+        $url = Config::getBaseUrl() . "/create/swbt";
+        return ApiRequestor::post($url, $dataSigned, Config::$auth);
+    }
+
+    public static function createPushTransaction($data_hash)
+    {
+        $dataSigned = self::createSignedData($data_hash);
+        $url = Config::getBaseUrl() . "/create/push";
+        return ApiRequestor::post($url, $dataSigned, Config::$auth);
+    }
+
     public static function checkStatus($transaction_id)
     {
         $url = Config::getBaseUrl() . "/check/status/" . $transaction_id;

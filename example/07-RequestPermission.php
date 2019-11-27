@@ -12,8 +12,8 @@ Config::$auth = base64_encode(Config::$usernameKey . ":" . Config::$passwordKey)
 $isConnected = Merchant::isConnected();
 
 if ($isConnected) {
-    $hp = '12345678';
-    var_dump(Merchant::getCustomerInfo($hp));
+    $hp = '08111111111';
+    var_dump(Merchant::requestPermission($hp));
 } else {
     var_dump($isConnected);
 }
